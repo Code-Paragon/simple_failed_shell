@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * shell - the main shell
  * @inputstr: usr input
