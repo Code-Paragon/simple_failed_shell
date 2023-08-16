@@ -8,8 +8,8 @@
 
 int main(void)
 {
-	char *inputstr = NULL;
-	int shelly = shell(inputstr);
+	char *inputstr = NULL, *const envp[] = {NULL};
+	int shelly = shell(envp, inputstr);
 	if (shelly == 1)
 		perror("ERROR");
 
