@@ -6,6 +6,7 @@ int main(int ac, char **av, char **env) {
 	char *path;
 	char *token;
 	char *delim = ":";
+	char *file;
 
 	path = getenv("PATH");
 
@@ -13,8 +14,11 @@ int main(int ac, char **av, char **env) {
 
 	while (token != NULL)
 	{
-		printf("%s\n", token);
+		
 		token = strtok(NULL, delim);
+		file = strcat(token, "/");
+		file = strcat(token, "ls");
+		printf("%s\n", token);
 	}
 	return (0);
 }
