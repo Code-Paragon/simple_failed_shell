@@ -56,7 +56,7 @@ char *handle_path(char *command) {
 int main(){
 	char *c_path;
 
-	c_path = handle_path("ls");
+	c_path = handle_path("sd");
 
 	printf("%s/n", c_path);
 
