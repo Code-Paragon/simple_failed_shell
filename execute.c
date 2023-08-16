@@ -1,16 +1,24 @@
 #include "main.h"
 
-char execute (char *fraginputstr, char *envp)
+int execute (char *fraginputstr, char *envp)
 {
 	char *cmd;
-	char *command = fraginputstr;
+	char *command = fraginputstr[0];
+	char *fullpath;
 
 
-	if (command[0] != "/")
-		command = handle_path(fraginputstr[0]);
+	if (command[0] != '/'){
+		fullpath = handle_path(fraginputstr[0]);
 	
-	else
-		execve(fraginputstr[0], fraginputstr, envp);
+		if (fullpath != NULL)
+		{
+				execve(fullpath, fraginputstr, envp);
+				perror("execve");
+		}
+    } else {
+        execve(command, fraginputstr, envp);
+        perror("execve");
+    }
 
-	return NULL;
+    return -1;
 }

@@ -53,7 +53,7 @@ int shell(char *const envp[], char *inputstr)
 				printf("\n");
 				exit(0);
 			}
-			if (execve(fraginputstr, envp) != NULL)
+			if (execute(fraginputstr, envp) != NULL)
 				perror("./hsh");
 			free(inputstr);
 			exit(0);
