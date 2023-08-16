@@ -1,14 +1,13 @@
 #include "main.h"
 
-int execute (char *fraginputstr, char *envp)
+int execute(char *fraginputstr[], char *envp[])
 {
-	char *cmd;
 	char *command = fraginputstr[0];
 	char *fullpath;
 
 
 	if (command[0] != '/'){
-		fullpath = handle_path(fraginputstr[0]);
+		fullpath = handle_path(command);
 	
 		if (fullpath != NULL)
 		{
