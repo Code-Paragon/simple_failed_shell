@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+char *handle_path(char *command);
 
-int main(int ac, char **av, char **env) {
+char *handle_path(char *command) {
     char *path;
     char *token;
     char *delim = ":";
     char *file;
+	struct stat sb;
 
     path = getenv("PATH");
     
@@ -25,16 +28,20 @@ int main(int ac, char **av, char **env) {
 
     while (token != NULL)
     {
-        char *file = (char *)malloc(strlen(token) + strlen("/ls") + 1);
+        char *file = (char *)malloc(strlen(token) + strlen(command) + 2);
         if (file == NULL) {
             perror("Memory allocation error");
             return 1;
         }
 
         strcpy(file, token);
-        strcat(file, "/ls");
+        strcat(file, "/");
+        strcat(file, command);
 
         printf("%s\n", file);
+
+		if (stat(file, &sb) == 0)
+			return (file);
 
         free(file);
 
@@ -43,5 +50,14 @@ int main(int ac, char **av, char **env) {
 
     free(path_copy);
 
-    return 0;
+    return (NULL);
 }
+
+int main(){
+	char *c_path;
+
+	c_path = handle_path("ls");
+
+	printf("%s/n", c_path);
+}
+
