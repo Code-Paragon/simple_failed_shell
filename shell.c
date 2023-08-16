@@ -26,6 +26,7 @@ int shell(char *const envp[], char *inputstr)
 
 	while(1);
 	{
+		printf("($) ");
 		my_pid = fork();
 		if (my_pid == -1)
 		{
@@ -34,7 +35,6 @@ int shell(char *const envp[], char *inputstr)
 		}
 		else if (my_pid == 0)
 		{
-			printf("($) ");
 			read = getline(&inputstr, &len, stdin);
 			if (read != -1)
 			{
