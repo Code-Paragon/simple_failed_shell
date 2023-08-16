@@ -11,6 +11,6 @@
 
 int shell(char *const envp[], char *inputstr);
 char *handle_path(char *command);
-int execute (char *fraginputstr[], char *envp[]);
+int execute (char *fraginputstr[], char *const envp[]);
 
 #endif /* MAIN_H */
