@@ -15,13 +15,13 @@ char *handle_path(char *command) {
     
     if (path == NULL) {
         printf("PATH environment variable not set.\n");
-        return 1;
+        return NULL;
     }
 
     char *path_copy = strdup(path);  // Create a copy of PATH to avoid modifying the original
     if (path_copy == NULL) {
         perror("Memory allocation error");
-        return 1;
+        return NULL;
     }
 
     token = strtok(path_copy, delim);
@@ -31,7 +31,7 @@ char *handle_path(char *command) {
         char *file = (char *)malloc(strlen(token) + strlen(command) + 2);
         if (file == NULL) {
             perror("Memory allocation error");
-            return 1;
+            return NULL;
         }
 
         strcpy(file, token);
@@ -59,5 +59,7 @@ int main(){
 	c_path = handle_path("ls");
 
 	printf("%s/n", c_path);
+
+	return (0);
 }
 
