@@ -58,6 +58,7 @@ int main(){
 
 	printf("%s\n", c_path);
 
+	free(c_path);
 	return (0);
 }
 
