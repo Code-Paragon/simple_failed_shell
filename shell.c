@@ -45,6 +45,8 @@ int shell(char *const envp[], char *inputstr)
 				y++;
 				fraginputstr[y] = strtok(NULL, delim);
 			}
+			if (strcmp(fraginputstr[0], "exit") == 0)
+				exit();
 			}
 			else/* Check for custom EOF i.e Crtl+D */
 			{
