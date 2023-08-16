@@ -15,10 +15,15 @@
  *
  * Return: 1 error, 0 success
  */
-int shell(char *inputstr, char *const envp[], size_t len, ssize_t read,
-		char delim[], char *fraginputstr[], int inputNum,
-		int i, int y, pid_t my_pid)
+int shell(char *const envp[], char *inputstr)
 {
+	size_t len = 0;
+	ssize_t read = 1;
+	char delim[] = " \n\t";
+	char *fraginputstr[1000];
+	int inputNum = 1000, i = 0, y = 0;
+	pid_t my_pid = 1;
+
 	for (i = 0; i < inputNum; i++)
 	{
 		my_pid = fork();
