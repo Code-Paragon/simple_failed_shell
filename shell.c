@@ -21,10 +21,10 @@ int shell(char *const envp[], char *inputstr)
 	ssize_t read = 1;
 	char delim[] = " \n\t";
 	char *fraginputstr[1000];
-	int inputNum = 1000, i = 0, y = 0;
+	int i = 0, y = 0;
 	pid_t my_pid = 1;
 
-	for (i = 0; i < inputNum; i++)
+	while(1);
 	{
 		my_pid = fork();
 		if (my_pid == -1)
@@ -53,7 +53,7 @@ int shell(char *const envp[], char *inputstr)
 				printf("\n");
 				exit(0);
 			}
-			if (execute(fraginputstr, envp) != NULL)
+			if (execute(fraginputstr, envp) != -1)
 				perror("./hsh");
 			free(inputstr);
 			exit(0);
