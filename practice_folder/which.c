@@ -11,7 +11,10 @@ int main(int ac, char **av, char **env) {
 
 	token = strtok(path, delim);
 
-	printf("%s", token);
+	while (path != 	NULL)
+		token = strtok(path, delim);
+
+	printf("%s\n", token);
 
 
 	return (0);
