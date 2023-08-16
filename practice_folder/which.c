@@ -38,8 +38,6 @@ char *handle_path(char *command) {
         strcat(file, "/");
         strcat(file, command);
 
-        printf("%s\n", file);
-
 		if (stat(file, &sb) == 0)
 			return (file);
 
@@ -58,7 +56,7 @@ int main(){
 
 	c_path = handle_path("sd");
 
-	printf("%s/n", c_path);
+	printf("%s\n", c_path);
 
 	return (0);
 }
