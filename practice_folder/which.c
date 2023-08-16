@@ -9,8 +9,6 @@ int main(int ac, char **av, char **env) {
 
 	path = getenv("PATH");
 
-	printf("%s\n", path);
-
 	token = strtok(path, delim);
 
 	printf("%s", token);
