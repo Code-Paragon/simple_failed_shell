@@ -1,6 +1,6 @@
 #include "main.h"
 
-int execute(char *fraginputstr[], char *envp[])
+int execute(char *fraginputstr[], char *const envp[])
 {
 	char *command = fraginputstr[0];
 	char *fullpath;
