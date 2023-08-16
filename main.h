@@ -9,7 +9,7 @@
 #include <string.h>
 #include <sys/stat.h>
 
-int shell(char *, char *const [], size_t, ssize_t, char[], char *[], int, int, int, pid_t);
+int shell(char *const envp[], char *inputstr);
 char *handle_path(char *command);
 
 #endif /* MAIN_H */
