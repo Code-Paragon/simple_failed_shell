@@ -2,7 +2,7 @@
 char *search_file_path(char *command, char *token);
 
 /**
- * hadle_path - generates directory for command
+ * handle_path - generates directory for command
  * @command: argument path to be found
  *
  * Return: NULL
