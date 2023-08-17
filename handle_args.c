@@ -1,4 +1,5 @@
 #include "main.h"
+char *search_file_path(char *command, char *token);
 
 /**
  * hadle_path - generates directory for command
@@ -12,8 +13,6 @@ char *handle_path(char *command)
     char *path;
     char *token;
     char *delim = ":";
-    char *file;
-    struct stat sb;
 
     path = getenv("PATH");
 
@@ -34,26 +33,39 @@ char *handle_path(char *command)
 
     while (token != NULL)
     {
-        char *file = (char *)malloc(strlen(token) + strlen(command) + 2);
-        if (file == NULL)
-        {
-            perror("Memory allocation error");
-            return (NULL);
-        }
-
-        strcpy(file, token);
-        strcat(file, "/");
-        strcat(file, command);
-
-        if (stat(file, &sb) == 0)
-            return (file);
-
-        free(file);
-
+        char *search_file_path(command, token);
         token = strtok(NULL, delim);
     }
-
     free(path_copy);
-
     return (NULL);
+}
+
+/**
+ * search_file_path - checks if the command inputed as a path
+ * @command: argument path to be found
+ * @token: directory path
+ *
+ * Return: NULL
+ */
+
+char *search_file_path(char *command, char *token)
+{
+    struct stat sb;
+    char *file;
+
+    file = (char *)malloc(strlen(token) + strlen(command) + 2);
+    if (file == NULL)
+    {
+        perror("Memory allocation error");
+        return (NULL);
+    }
+
+    strcpy(file, token);
+    strcat(file, "/");
+    strcat(file, command);
+
+    if (stat(file, &sb) == 0)
+        return (file);
+
+    free(file);
 }
