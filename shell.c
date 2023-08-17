@@ -38,19 +38,20 @@ int shell(char *const envp[], char *inputstr)
 				fraginputstr[y] = strtok(NULL, delim);
 			}
 		}
+		if (strcmp(fraginputstr[0], "exit") == 0)
+		{
+			exit(1);
+		}
+
 		my_pid = fork();
 		if (my_pid == -1)
 		{
 			perror("fork failed");
-			return (1);
+			return (0);
 		}
+		
 		else if (my_pid == 0)
 		{
-
-			if (strcmp(fraginputstr[0], "exit") == 0)
-			{
-				exit(1);
-			}
 			if/* Check for custom EOF i.e Crtl+D */
 			{
 				kill(my_pid, SIGTERM);
