@@ -1,4 +1,5 @@
 #include "main.h"
+int create_process(char *fraginputstr[], char *const envp[]);
 
 /**
  * shell - the main shell
@@ -14,7 +15,6 @@ int shell(char *const envp[], char *inputstr)
 	char delim[] = " \n\t";
 	char *fraginputstr[1000];
 	int i = 0, y = 0;
-	pid_t my_pid = 1;
 
 	while (1)
 	{
@@ -32,7 +32,6 @@ int shell(char *const envp[], char *inputstr)
 		}
 		else /* Check for custom EOF i.e Crtl+D */
 		{
-			kill(my_pid, SIGTERM);
 			free(inputstr);
 			printf("\n");
 			exit(0);
@@ -43,25 +42,41 @@ int shell(char *const envp[], char *inputstr)
 			exit(0);
 		}
 
-		my_pid = fork();
-
-		if (my_pid == -1)
-		{
-			perror("fork failed");
-			return (0);
-		}
-
-		else if (my_pid == 0)
-	{
-			if (execute(fraginputstr, envp) != -1)
-				perror("./hsh");
-
-			free(inputstr);
-			exit(0);
-		}
-		else
-			wait(NULL);
+		create_process(fraginputstr, envp);
 	}
 	free(inputstr);
+	return (0);
+}
+
+/**
+ * create_process - creates a child process
+ * @fraginputstr: fragmented input string
+ * @envp: process environ
+ *
+ * Return: 1 error, 0 success
+ */
+int create_process(char *fraginputstr[], char *const envp[])
+{
+	pid_t my_pid = 1;
+
+	my_pid = fork();
+
+	if (my_pid == -1)
+	{
+		perror("fork failed");
+		return (0);
+	}
+
+	else if (my_pid == 0)
+	{
+		if (execute(fraginputstr, envp) != -1)
+			perror("./hsh");
+
+		free(inputstr);
+		exit(0);
+	}
+	else
+		wait(NULL);
+
 	return (0);
 }
