@@ -38,17 +38,16 @@ int shell(char *const envp[], char *inputstr)
 			read = getline(&inputstr, &len, stdin);
 			if (read != -1)
 			{
-			y = 0;
-			fraginputstr[y] = strtok(inputstr, delim);
-			while (fraginputstr[y] != NULL)
-			{
-				y++;
-				fraginputstr[y] = strtok(NULL, delim);
+				y = 0;
+				fraginputstr[y] = strtok(inputstr, delim);
+				while (fraginputstr[y] != NULL)
+				{
+					y++;
+					fraginputstr[y] = strtok(NULL, delim);
+				}
 			}
 			if (strcmp(fraginputstr[0], "exit") == 0)
-				free(inputstr);
-				return (0);
-			}
+					exit (0);
 			else/* Check for custom EOF i.e Crtl+D */
 			{
 				kill(my_pid, SIGTERM);
