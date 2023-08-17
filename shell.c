@@ -38,12 +38,21 @@ int shell(char *const envp[], char *inputstr)
 				fraginputstr[y] = strtok(NULL, delim);
 			}
 		}
+		else /* Check for custom EOF i.e Crtl+D */
+		{
+			kill(my_pid, SIGTERM);
+			free(inputstr);
+			printf("\n");
+			exit(0);
+		}
+
 		if (strcmp(fraginputstr[0], "exit") == 0)
 		{
-			exit(1);
+			exit(0);
 		}
 
 		my_pid = fork();
+		
 		if (my_pid == -1)
 		{
 			perror("fork failed");
@@ -52,13 +61,6 @@ int shell(char *const envp[], char *inputstr)
 		
 		else if (my_pid == 0)
 		{
-			if/* Check for custom EOF i.e Crtl+D */
-			{
-				kill(my_pid, SIGTERM);
-				free(inputstr);
-				printf("\n");
-				exit(0);
-			}
 			if (execute(fraginputstr, envp) != -1)
 				perror("./hsh");
 
