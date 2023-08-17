@@ -49,7 +49,7 @@ int shell(char *const envp[], char *inputstr)
 
 			if (strcmp(fraginputstr[0], "exit") == 0)
 			{
-				exit(0);
+				exit(1);
 			}
 			else/* Check for custom EOF i.e Crtl+D */
 			{
@@ -60,7 +60,7 @@ int shell(char *const envp[], char *inputstr)
 			}
 			if (execute(fraginputstr, envp) != -1)
 				perror("./hsh");
-				
+
 			free(inputstr);
 			exit(0);
 		}
