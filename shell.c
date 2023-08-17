@@ -46,7 +46,8 @@ int shell(char *const envp[], char *inputstr)
 				fraginputstr[y] = strtok(NULL, delim);
 			}
 			if (strcmp(fraginputstr[0], "exit") == 0)
-				kill(my_pid, SIGKILL);
+				free(inputstr);
+				return (0);
 			}
 			else/* Check for custom EOF i.e Crtl+D */
 			{
