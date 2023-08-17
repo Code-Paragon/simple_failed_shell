@@ -46,19 +46,21 @@ int shell(char *const envp[], char *inputstr)
 		}
 		else if (my_pid == 0)
 		{
+
 			if (strcmp(fraginputstr[0], "exit") == 0)
 			{
 				exit(0);
 			}
-			else if/* Check for custom EOF i.e Crtl+D */
+			else/* Check for custom EOF i.e Crtl+D */
 			{
 				kill(my_pid, SIGTERM);
 				free(inputstr);
 				printf("\n");
 				exit(0);
 			}
-			else (execute(fraginputstr, envp) != -1)
+			if (execute(fraginputstr, envp) != -1)
 				perror("./hsh");
+				
 			free(inputstr);
 			exit(0);
 		}
