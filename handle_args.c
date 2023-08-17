@@ -70,4 +70,5 @@ char *search_file_path(char *command, char *token)
 		return (file);
 
 	free(file);
+	return (NULL);
 }
