@@ -26,6 +26,18 @@ int shell(char *const envp[], char *inputstr)
 
 	while(1)
 	{
+		printf("($) ");
+		read = getline(&inputstr, &len, stdin);
+		if (read != -1)
+		{
+			y = 0;
+			fraginputstr[y] = strtok(inputstr, delim);
+			while (fraginputstr[y] != NULL)
+			{
+				y++;
+				fraginputstr[y] = strtok(NULL, delim);
+			}
+		}
 		my_pid = fork();
 		if (my_pid == -1)
 		{
@@ -34,30 +46,18 @@ int shell(char *const envp[], char *inputstr)
 		}
 		else if (my_pid == 0)
 		{
-			printf("($) ");
-			read = getline(&inputstr, &len, stdin);
-			if (read != -1)
-			{
-				y = 0;
-				fraginputstr[y] = strtok(inputstr, delim);
-				while (fraginputstr[y] != NULL)
-				{
-					y++;
-					fraginputstr[y] = strtok(NULL, delim);
-				}
-			}
 			if (strcmp(fraginputstr[0], "exit") == 0)
 			{
 				exit(0);
 			}
-			else/* Check for custom EOF i.e Crtl+D */
+			else if/* Check for custom EOF i.e Crtl+D */
 			{
 				kill(my_pid, SIGTERM);
 				free(inputstr);
 				printf("\n");
 				exit(0);
 			}
-			if (execute(fraginputstr, envp) != -1)
+			else (execute(fraginputstr, envp) != -1)
 				perror("./hsh");
 			free(inputstr);
 			exit(0);
