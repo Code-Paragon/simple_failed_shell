@@ -51,7 +51,7 @@ int shell(char *const envp[], char *inputstr)
 			{
 				exit(1);
 			}
-			else/* Check for custom EOF i.e Crtl+D */
+			if/* Check for custom EOF i.e Crtl+D */
 			{
 				kill(my_pid, SIGTERM);
 				free(inputstr);
