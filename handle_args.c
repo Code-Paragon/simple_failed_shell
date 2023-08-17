@@ -19,14 +19,15 @@ char *handle_path(char *command)
 	if (path == NULL)
 	{
 		printf("PATH environment variable not set.\n");
-		return NULL;
+		return (NULL);
 	}
-	char *path_copy = strdup(path); /* Create a copy of PATH to avoid modifying the original */
 
+	/* Create a copy of PATH to avoid modifying the original */
+	char *path_copy = strdup(path);
 	if (path_copy == NULL)
 	{
 		perror("Memory allocation error");
-		return NULL;
+		return (NULL);
 	}
 
 	token = strtok(path_copy, delim);
