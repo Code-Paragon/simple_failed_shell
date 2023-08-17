@@ -4,14 +4,6 @@
  * shell - the main shell
  * @inputstr: usr input
  * @envp: process environ
- * @len: lenght
- * @read: read
- * @delim: delimiters
- * @fraginputstr: seperated input
- * @inputNum: number of inputs
- * @i: loop counter
- * @y: loop counter
- * @my_pid: child pid
  *
  * Return: 1 error, 0 success
  */
@@ -24,7 +16,7 @@ int shell(char *const envp[], char *inputstr)
 	int i = 0, y = 0;
 	pid_t my_pid = 1;
 
-	while(1)
+	while (1)
 	{
 		printf("($) ");
 		read = getline(&inputstr, &len, stdin);
@@ -52,15 +44,15 @@ int shell(char *const envp[], char *inputstr)
 		}
 
 		my_pid = fork();
-		
+
 		if (my_pid == -1)
 		{
 			perror("fork failed");
 			return (0);
 		}
-		
+
 		else if (my_pid == 0)
-		{
+	{
 			if (execute(fraginputstr, envp) != -1)
 				perror("./hsh");
 
