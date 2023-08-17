@@ -24,6 +24,7 @@ char *handle_path(char *command)
 
 	/* Create a copy of PATH to avoid modifying the original */
 	char *path_copy = strdup(path);
+
 	if (path_copy == NULL)
 	{
 		perror("Memory allocation error");
@@ -34,7 +35,7 @@ char *handle_path(char *command)
 
 	while (token != NULL)
 	{
-		char *search_file_path(command, token);
+		search_file_path(command, token);
 		token = strtok(NULL, delim);
 	}
 	free(path_copy);

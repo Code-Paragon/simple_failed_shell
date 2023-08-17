@@ -72,7 +72,7 @@ int create_process(char *fraginputstr[], char *const envp[])
 		if (execute(fraginputstr, envp) != -1)
 			perror("./hsh");
 
-		free(inputstr);
+		free(fraginputstr);
 		exit(0);
 	}
 	else
