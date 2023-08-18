@@ -42,10 +42,17 @@ char *handle_path(char *command)
 
 	while (token != NULL)
 	{
-		search_file_path(command, token);
+		char *result = search_file_path(command, token);
+
+		if (result != NULL)
+		{
+			free(path_copy);
+			return result; // Return the found path
+		}
+
 		token = strtok(NULL, delim);
 	}
-	
+
 	free(path_copy);
 	return (NULL);
 }
@@ -75,8 +82,10 @@ char *search_file_path(char *command, char *token)
 	strcat(file, command);
 
 	if (stat(file, &sb) == 0)
+	{
+		printf("%s\n", file);
 		return (file);
-		printf("%s/n", file);
+	}
 
 	free(file);
 	return (NULL);
@@ -85,7 +94,18 @@ char *search_file_path(char *command, char *token)
 int main()
 {
 	char *command = "ls";
-	handle_path(command);
+	char *result = handle_path(command);
+
+	if (result != NULL)
+	{
+		// Use the result as needed
+		printf("Found command: %s\n", result);
+		free(result); // Don't forget to free the memory
+	}
+	else
+	{
+		printf("Command not found.\n");
+	}
 
 	return (0);
 }

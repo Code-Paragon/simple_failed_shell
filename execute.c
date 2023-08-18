@@ -2,12 +2,12 @@
 
 /**
  * execute - checks if the command is a path and runs it
- * 
+ *
  * @fraginputstr: tokenised string from user
  * @envp: environmental variable
- * 
+ *
  * Return: -1
-*/
+ */
 
 int execute(char *fraginputstr[], char *const envp[])
 {
