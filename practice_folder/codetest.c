@@ -42,8 +42,7 @@ char *handle_path(char *command)
 
 	while (token != NULL)
 	{
-		char *result = search_file_path(command, token);
-		printf("%s\n", result);
+		search_file_path(command, token);
 		token = strtok(NULL, delim);
 	}
 	
@@ -89,5 +88,16 @@ int main()
 	char *command = "ls";
 	handle_path(command);
 
+	if (result != NULL)
+    {
+        // Use the result as needed
+        printf("Found command: %s\n", result);
+        free(result); // Don't forget to free the memory
+    }
+    else
+    {
+        printf("Command not found.\n");
+    }
+	
 	return (0);
 }
