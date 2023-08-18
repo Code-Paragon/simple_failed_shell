@@ -10,20 +10,20 @@ char *search_file_path(char *command, char *token);
 
 char *handle_path(char *command)
 {
-	char *path;
+	char *path, *path_copy;
 	char *token;
 	char *delim = ":";
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 
 	if (path == NULL)
 	{
-		printf("PATH environment variable not set.\n");
+		write(1, "PATH environment variable not set.\n", 34);
 		return (NULL);
 	}
 
 	/* Create a copy of PATH to avoid modifying the original */
-	char *path_copy = strdup(path);
+	path_copy = _strdup(path);
 
 	if (path_copy == NULL)
 	{
@@ -56,16 +56,16 @@ char *search_file_path(char *command, char *token)
 	struct stat sb;
 	char *file;
 
-	file = malloc(strlen(token) + strlen(command) + 2);
+	file = malloc(_strlen(token) + _strlen(command) + 2);
 	if (file == NULL)
 	{
 		perror("Memory allocation error");
 		return (NULL);
 	}
 
-	strcpy(file, token);
-	strcat(file, "/");
-	strcat(file, command);
+	_strcpy(file, token);
+	_strcat(file, "/");
+	_strcat(file, command);
 
 	if (stat(file, &sb) == 0)
 		return (file);
