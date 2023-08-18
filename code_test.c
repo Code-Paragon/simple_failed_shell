@@ -8,7 +8,7 @@ char *search_file_path(char *command, char *token);
  * Return: NULL
  */
 
-char *handle_path(char *command)
+char main(char *command)
 {
 	char *path;
 	char *token;
