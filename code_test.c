@@ -8,7 +8,7 @@ char *search_file_path(char *command, char *token);
  * Return: NULL
  */
 
-char main(char *command)
+char *handle_path(char *command)
 {
 	char *path;
 	char *token;
@@ -72,4 +72,11 @@ char *search_file_path(char *command, char *token)
 
 	free(file);
 	return (NULL);
+}
+
+int main()
+{
+	char *handle_path("ls");
+
+	return (0);
 }
