@@ -86,7 +86,7 @@ char *search_file_path(char *command, char *token)
 int main()
 {
 	char *command = "ls";
-	handle_path(command);
+	char *result = handle_path(command);
 
 	if (result != NULL)
     {
@@ -98,6 +98,6 @@ int main()
     {
         printf("Command not found.\n");
     }
-	
+
 	return (0);
 }
