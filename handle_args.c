@@ -35,7 +35,12 @@ char *handle_path(char *command)
 
 	while (token != NULL)
 	{
-		search_file_path(command, token);
+		char *file_path = search_file_path(command, token);
+		if (file_path != NULL)
+		{
+			free(path_copy);
+			return (file_path); // Return the found path
+		}
 		token = strtok(NULL, delim);
 	}
 	
