@@ -76,6 +76,7 @@ char *search_file_path(char *command, char *token)
 
 	if (stat(file, &sb) == 0)
 		return (file);
+		printf(file);
 
 	free(file);
 	return (NULL);
