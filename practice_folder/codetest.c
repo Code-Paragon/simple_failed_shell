@@ -76,8 +76,8 @@ char *search_file_path(char *command, char *token)
 	strcat(file, command);
 
 	if (stat(file, &sb) == 0){
-		printf("%s\n", file);
 		return (file);	
+		printf("%s\n", file);
 	}
 
 	free(file);
