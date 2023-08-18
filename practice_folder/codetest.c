@@ -42,7 +42,8 @@ char *handle_path(char *command)
 
 	while (token != NULL)
 	{
-		search_file_path(command, token);
+		char *result = search_file_path(command, token);
+		printf("%s\n", result);
 		token = strtok(NULL, delim);
 	}
 	
@@ -76,7 +77,7 @@ char *search_file_path(char *command, char *token)
 
 	if (stat(file, &sb) == 0)
 		return (file);
-		printf("%s/n", file);
+		printf("%s\n", file);
 
 	free(file);
 	return (NULL);
