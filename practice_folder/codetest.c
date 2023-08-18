@@ -83,7 +83,7 @@ char *search_file_path(char *command, char *token)
 
 int main()
 {
-	char *command = "ls"
+	char *command = "ls";
 	char *handle_path(command);
 
 	return (0);
