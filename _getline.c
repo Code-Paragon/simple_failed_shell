@@ -4,9 +4,11 @@ void assign_inputstr(char **inputstr, size_t *mi, char *buff, size_t bi);
 /**
  * assign_inputstr - Reassigns the inputstr variable for _getline.
  * @inputstr: A buffer to store an input string.
- * @mi: The size of lineptr.
- * @buff: The string to assign to lineptr.
+ * @mi: The size of inputstr.
+ * @buff: The string to assign to inputstr.
  * @bi: The size of buffer.
+ *
+ * Return: void
  */
 void assign_inputstr(char **inputstr, size_t *mi, char *buff, size_t bi)
 {
