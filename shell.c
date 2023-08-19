@@ -13,6 +13,7 @@ int _printenv(void);
 int shell(char *const envp[], char *inputstr)
 {
 	ssize_t read = 1, Firstwrite;
+	size_t len = 100;
 	char delim[] = " \n\t";
 	char *fraginputstr[1000];
 	int y = 0, i = 0;
@@ -22,7 +23,7 @@ int shell(char *const envp[], char *inputstr)
 		Firstwrite = write(1, "($) ", 4);
 		if (Firstwrite < 0)
 			perror("write failed");
-		read =_getline(inputstr);
+		read =_getline(&inputstr, &len, stdin);
 		if (read != -1)
 		{
 			y = 0;

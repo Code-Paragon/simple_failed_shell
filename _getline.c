@@ -40,7 +40,7 @@ void assign_inputstr(char **inputstr, size_t *mi, char *buff, size_t bi)
  *
  * Return: The number of bytes read.
  */
-ssize_t _getline(char **inputstr, size_t *m, FILE *stream)
+ssize_t _getline(char **inputstr, size_t *m, FILE *dstream)
 {
 	static ssize_t inputed;
 	ssize_t reti;
