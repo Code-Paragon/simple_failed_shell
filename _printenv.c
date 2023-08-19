@@ -4,11 +4,13 @@ extern char **environ;
 
 int _printenv(void)
 {
-    /* Loop through the environment variables and print them */
-    for (char **env = environ; *env != NULL; env++) 
-    {
-        printf("%s\n", *env);
-    }
+	char **env;
 
-    return 0;
+/* Loop through the environment variables and print them */
+	for (env = environ; *env != NULL; env++) 
+	{
+		printf("%s\n", *env);
+	}
+
+	return (0);
 }
