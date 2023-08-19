@@ -1,5 +1,7 @@
 #include "main.h"
+#include <stdlib.h>
 int create_process(char *fraginputstr[], char *const envp[]);
+int _printenv(void);
 
 /**
  * shell - the main shell
@@ -10,16 +12,18 @@ int create_process(char *fraginputstr[], char *const envp[]);
  */
 int shell(char *const envp[], char *inputstr)
 {
-	size_t len = 0;
-	ssize_t read = 1;
+	ssize_t read = 1, Firstwrite;
+	size_t len = 100;
 	char delim[] = " \n\t";
 	char *fraginputstr[1000];
-	int i = 0, y = 0;
+	int y = 0, i = 0;
 
-	while (1)
+	while (i < 1000)
 	{
-		printf("($) ");
-		read = getline(&inputstr, &len, stdin);
+		Firstwrite = write(1, "($) ", 4);
+		if (Firstwrite < 0)
+			perror("write failed");
+		read =_getline(&inputstr, &len, stdin);
 		if (read != -1)
 		{
 			y = 0;
@@ -33,16 +37,16 @@ int shell(char *const envp[], char *inputstr)
 		else /* Check for custom EOF i.e Crtl+D */
 		{
 			free(inputstr);
-			printf("\n");
+			write(1, "\n", 1);
 			exit(0);
 		}
 
-		if (strcmp(fraginputstr[0], "exit") == 0)
-		{
+		if (_strcmp(fraginputstr[0], "exit") == 0)
 			exit(0);
-		}
-
+		if (_strcmp(fraginputstr[0], "env") == 0)
+			_printenv();
 		create_process(fraginputstr, envp);
+		i++;
 	}
 	free(inputstr);
 	return (0);
