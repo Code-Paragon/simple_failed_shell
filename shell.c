@@ -27,11 +27,11 @@ int shell(char *const envp[], char *inputstr)
 		if (read != -1)
 		{
 			y = 0;
-			fraginputstr[y] = strtok(inputstr, delim);
+			fraginputstr[y] = _strtok(inputstr, delim);
 			while (fraginputstr[y] != NULL)
 			{
 				y++;
-				fraginputstr[y] = strtok(NULL, delim);
+				fraginputstr[y] = _strtok(NULL, delim);
 			}
 		}
 		else /* Check for custom EOF i.e Crtl+D */
