@@ -22,5 +22,6 @@ char *_strchr(char *s, char c);
 char *_strdup(char *str);
 ssize_t _getline(char **inputstr, size_t *m, FILE *stream);
 int printenv(void);
+char *_strtok(char *str, const char *delim);
 
 #endif /* MAIN_H */

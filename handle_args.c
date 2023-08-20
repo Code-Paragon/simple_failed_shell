@@ -31,7 +31,7 @@ char *handle_path(char *command)
 		return (NULL);
 	}
 
-	token = strtok(path_copy, delim);
+	token = _strtok(path_copy, delim);
 
 	while (token != NULL)
 	{
@@ -42,7 +42,7 @@ char *handle_path(char *command)
 			free(path_copy);
 			return (file_path); /* Return the found path */
 		}
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 
 	free(path_copy);
