@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * printenv - prints the environment variables
+ * _printenv - prints the environment variables
  * 
  * Return: 0
  */
