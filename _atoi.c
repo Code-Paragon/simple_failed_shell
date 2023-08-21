@@ -16,7 +16,8 @@ int _atoi(char *s)
 		if (*s == '-')
 			sign *= -1;
 
-		/* calculates the corresponding integer value for digits within 0 and 9 and appends it */
+		/* calculates the corresponding integer value
+		for digits within 0 and 9 and appends it */
 		else if (*s >= '0' && *s <= '9')
 			num = num * 10 + (*s - '0');
 		else if (num > 0)
