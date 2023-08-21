@@ -5,6 +5,8 @@
  *
  * @str: string passed in to be tokenised
  * @delim: delimeter character that separates tokens
+ * 
+ * Return: NULL on failure and token on success.
  */
 char *_strtok(char *str, const char *delim)
 {
