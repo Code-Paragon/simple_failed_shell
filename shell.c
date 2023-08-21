@@ -50,8 +50,8 @@ int shell(char *const envp[], char *inputstr)
 				exit(exit_status);
 			}
 			/* exit with 0 if no exit status is passed */
-			else 
-				exit (0);
+			else
+				exit(0);
 		}
 		if (_strcmp(fraginputstr[0], "env") == 0)
 			_printenv();
