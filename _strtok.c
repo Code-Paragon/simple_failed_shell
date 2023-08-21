@@ -15,17 +15,14 @@ char *_strtok(char *str, const char *delim)
 	/* if str is NULL assign last_token_end to string */
 	if (str == NULL)
 		str = last_token_end;
-
 	/* returns NULL if an argument is mising in function */
 	if (str == NULL && delim == NULL)
 	{
 		return (NULL);
 	}
-
 	/* str points to start of the current token */
 	while (*str != '\0' && strchr(delim, *str) != NULL)
 		str++;
-
 	if (*str == '\0')
 		return (NULL);
 
@@ -48,5 +45,5 @@ char *_strtok(char *str, const char *delim)
 		/* assigns the token end to last_token_end */
 		last_token_end = str;
 	}
-	return token;
+	return (token);
 }
