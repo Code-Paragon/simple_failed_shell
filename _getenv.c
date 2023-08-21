@@ -21,7 +21,7 @@ char *_getenv(char *name)
 		if (token != NULL && _strcmp(name, token) == 0)
 		{
 			free(copy);
-			return _strchr(environ[i], '=') + 1;
+			return (_strchr(environ[i], '=') + 1);
 		}
 		free(copy);
 		i++;
