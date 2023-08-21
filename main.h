@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <ctype.h>
 
+extern char **environ;
+
 int shell(char *const envp[], char *inputstr);
 char *handle_path(char *command);
 int execute (char *fraginputstr[], char *const envp[]);
