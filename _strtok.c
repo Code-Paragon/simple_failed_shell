@@ -1,19 +1,28 @@
 #include "main.h"
 
+/**
+ * _strtok - tokenizes the string passed
+ *
+ * @str: string passed in to be tokenised
+ * @delim: delimeter character that separates tokens
+ */
 char *_strtok(char *str, const char *delim)
 {
 	static char *last_token_end = NULL;
 	char *token_start, *token;
 	int i, token_length;
 
+	/* if str is NULL assign last_token_end to string */
 	if (str == NULL)
 		str = last_token_end;
 
+	/* returns NULL if an argument is mising in function */
 	if (str == NULL && delim == NULL)
 	{
 		return (NULL);
 	}
 
+	/* str points to start of the current token */
 	while (*str != '\0' && strchr(delim, *str) != NULL)
 		str++;
 
@@ -22,6 +31,7 @@ char *_strtok(char *str, const char *delim)
 
 	token_start = str;
 
+	/* str points to the end of the last token */
 	while (*str != '\0' && strchr(delim, *str) == NULL)
 		str++;
 
@@ -35,7 +45,7 @@ char *_strtok(char *str, const char *delim)
 			token[i] = token_start[i];
 		}
 		token[token_length] = '\0';
-		last_token_end = str;
+		last_token_end = str; /* assigns the address of the last token to last_token_end */
 	}
 	return token;
 }

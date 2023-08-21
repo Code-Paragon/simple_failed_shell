@@ -1,10 +1,5 @@
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/stat.h>
+#include "main.h"
+
 extern char **environ;
 int _strcmp(char *s1, char *s2);
 char *_strchr(char *s, char c);
