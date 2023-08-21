@@ -2,7 +2,7 @@
 
 /**
  * _printenv - prints the environment variables
- * 
+ *
  * Return: 0
  */
 int _printenv(void)

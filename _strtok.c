@@ -8,7 +8,7 @@
  */
 char *_strtok(char *str, const char *delim)
 {
-	static char *last_token_end = NULL;
+	static char *last_token_end;
 	char *token_start, *token;
 	int i, token_length;
 
@@ -45,7 +45,8 @@ char *_strtok(char *str, const char *delim)
 			token[i] = token_start[i];
 		}
 		token[token_length] = '\0';
-		last_token_end = str; /* assigns the address of the last token to last_token_end */
+		/* assigns the token end to last_token_end */
+		last_token_end = str;
 	}
 	return token;
 }
