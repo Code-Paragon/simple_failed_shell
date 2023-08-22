@@ -1,19 +1,30 @@
 #include "main.h"
 
 /**
- * _printenv - prints the environment variables
+ * com_env - prints the environment variables
+ * @args: An array of arguments passed to the shell.
+ * @front: A double pointer to the beginning of args.
  *
- * Return: 0
+ * Return: If an error occurs - -1.
+ *	   Otherwise - 0.
+ *
+ * Description: Prints one variable per line in the
+ *              format 'variable'='value'.
  */
-int _printenv(void)
+int com_env(char **args, char __attribute__((__unused__)) **front);
 {
-	char **env;
+	char nch = '\n';
+	int idx;
 
-	/* Loop through the environment variables and print them */
-	for (env = environ; *env != NULL; env++)
+	if (!environ)
+		return (-1);
+/* Loop through the environment variables and print them */
+	for (idx = 0; environ[idx]; idx++)
 	{
-		printf("%s\n", *env);
+		write(STDOUT_FILENO, environ[idx], _strlen(environ[index]));
+		write(STDOUT_FILENO, &nch, 1);
 	}
 
+	(void)args;
 	return (0);
 }

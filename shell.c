@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 int create_process(char *fraginputstr[], char *const envp[]);
-int _printenv(void);
+int (*get_Plugin(char *command))(char **args, char **front);
 
 /**
  * shell - the main shell
@@ -17,6 +17,7 @@ int shell(char *const envp[], char *inputstr)
 	char delim[] = " \n\t";
 	char *fraginputstr[1000];
 	int y = 0, i = 0, exit_status;
+	int (*Plugin_function)(char **args, char **front);
 
 	while (i < 1000)
 	{
@@ -53,9 +54,14 @@ int shell(char *const envp[], char *inputstr)
 			else
 				exit(0);
 		}
-		if (_strcmp(fraginputstr[0], "env") == 0)
-			_printenv();
-		create_process(fraginputstr, envp);
+		if (y == 1)
+			Plugin_function = get_Plugin(fraginputstr[0]);
+		if (Plugin_function != NULL)
+		{
+			Plugin_function(args, front);
+		}
+		else
+			create_process(fraginputstr, envp);
 		i++;
 	}
 	free(inputstr);
