@@ -14,7 +14,7 @@ char *handle_path(char *command)
 	char *token;
 	char *delim = ":";
 
-	path = _getenv("PATH");
+	path = *(_getenv("PATH"));
 
 	if (path == NULL)
 	{

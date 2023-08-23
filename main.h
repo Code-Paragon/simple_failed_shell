@@ -15,7 +15,7 @@
 
 extern char **environ;
 
-int shell(char *const envp[], char *inputstr);
+int shell(char *const envp[], char *inputstr,char **args, char **front);
 char *handle_path(char *command);
 int execute (char *fraginputstr[], char *const envp[]);
 char **_getenv(char *name);
@@ -33,6 +33,7 @@ int com_setenv(char **args, char __attribute__((__unused__)) **front);
 int com_unsetenv(char **args, char __attribute__((__unused__)) **front);
 char *_strtok(char *str, const char *delim);
 int _atoi(char *s);
+int _strncmp(const char *s1, const char *s2, size_t n);
 /**
  * struct Plugin_s - A new struct type defining builtin commands.
  * @comName: The name of the builtin command.
@@ -51,7 +52,7 @@ typedef struct Plugin_s
 typedef struct dirList_s
 {
 	char *direc;
-	struct dirList_s *dirNext:
+	struct dirList_s *dirNext;
 }dirList_t;
 
 int (*get_Plugin(char *command))(char **args, char **front);

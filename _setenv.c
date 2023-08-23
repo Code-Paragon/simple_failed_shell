@@ -8,7 +8,7 @@
  *
  * Return: If an error occurs - -1, Otherwise - 0.
  */
-int shellby_setenv(char **args, char __attribute__((__unused__)) **front)
+int com_setenv(char **args, char __attribute__((__unused__)) **front)
 {
 	size_t s;
 	int idx;
@@ -30,9 +30,9 @@ int shellby_setenv(char **args, char __attribute__((__unused__)) **front)
 		return (-1);
 	}
 	/* Concantenate the provided var name and its value with = in between */
-	_strcpy(new_value, args[0]);
-	_strcat(new_value, "=");
-	_strcat(new_value, args[1]);
+	_strcpy(new_envValue, args[0]);
+	_strcat(new_envValue, "=");
+	_strcat(new_envValue, args[1]);
 	/* Check if the environment variable already exists */
 	environ_var = _getenv(args[0]);
 	if (environ_var)

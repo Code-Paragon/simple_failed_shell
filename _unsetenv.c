@@ -1,7 +1,7 @@
 #include "main.h"
-int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front)
+int com_unsetenv(char **args, char __attribute__((__unused__)) **front)
 {
-	char **new_env, **eniviron_var;
+	char **new_env, **environ_var;
 	int idx, idx2;
 	size_t s;
 	if (!args[0])

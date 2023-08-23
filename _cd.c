@@ -9,9 +9,9 @@
  */
 int com_cd(char **args, char __attribute__((__unused__)) **front)
 {
-	struct stat dir ;
+	/* struct stat dir ; */
 	char *newLine = "\n", **direc_inf;
-	char *pwd = NULL, oldpwd = NULL;
+	char *pwd = NULL, *oldpwd = NULL;
 
 	oldpwd = getcwd(oldpwd, 0);
 	if (!oldpwd)
