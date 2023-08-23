@@ -7,7 +7,7 @@
  * Return: If the given string is not a directory - 2
  * If an error occurs - -1Otherwise - 0.
  */
-int shellby_cd(char **args, char __attribute__((__unused__)) **front)
+int com_cd(char **args, char __attribute__((__unused__)) **front)
 {
 	struct stat dir ;
 	char *newLine = "\n", **direc_inf;
