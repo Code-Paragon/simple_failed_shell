@@ -7,7 +7,7 @@
  * Return: If the given string is not a directory - 2
  * If an error occurs - -1Otherwise - 0.
  */
-int com_cd(char **args, char __attribute__((__unused__)) **front)
+int com_cd(char **args, char __attribute__((__unused__)) * *front)
 {
 	struct stat direc;
 	char *newLine = "\n", **direc_inf;
@@ -20,7 +20,7 @@ int com_cd(char **args, char __attribute__((__unused__)) **front)
 	{
 		if (*(args[0]) == '-' || _strcmp(args[0], "--") == 0)
 		{
-			if ((args[0][1] == '-' && args[0][2] == '\0') ||args[0][1] == '\0')
+			if ((args[0][1] == '-' && args[0][2] == '\0') || args[0][1] == '\0')
 			{
 				if (_getenv("OLDPWD") != NULL)
 					(chdir(*_getenv("OLDPWD") + 7));
@@ -33,7 +33,7 @@ int com_cd(char **args, char __attribute__((__unused__)) **front)
 		}
 		else
 		{
-			if (stat(args[0], &direc) == 0 && S_ISDIR(direc.st_mode)&& ((direc.st_mode & S_IXUSR) != 0))
+			if (stat(args[0], &direc) == 0 && S_ISDIR(direc.st_mode) && ((direc.st_mode & S_IXUSR) != 0))
 				chdir(args[0]);
 			else
 			{

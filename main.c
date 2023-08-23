@@ -2,11 +2,14 @@
 
 /**
  * main - a simple shell
+ * @argc: argument count
+ * @argv: argument vector
+ * @front: pointer to fist argument
  *
  * Return: 0
  */
 
-int main(int  __attribute__((__unused__)) argc, char **args, char **front)
+int main(int __attribute__((__unused__)) argc, char **args, char **front)
 {
 	char *inputstr = NULL, *const envp[] = {NULL};
 	int shelly = shell(envp, inputstr, args, front);
