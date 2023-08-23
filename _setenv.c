@@ -14,27 +14,24 @@ int com_setenv(char **args, char __attribute__((__unused__)) **front)
 	int idx;
 	char **new_env, *new_envValue, **environ_var = NULL;
 
-	if (!args[0] || !args[1])
+	if (!args[1] || !args[2])
 	{
 		perror("args incomplete at setenv");
-		free(*environ_var);
 		return (-1);
 	}
 	/* Allocate memory for the new value (environment variable=value) */
-	new_envValue = malloc(_strlen(args[0]) + 1 + _strlen(args[1]) + 1);
+	new_envValue = malloc(_strlen(args[1]) + 1 + _strlen(args[2]) + 1);
 	if (!new_envValue)
 	{
 		perror("new_envValue malloc failed at setenv");
-		free(new_envValue);
-		free(*environ_var);
 		return (-1);
 	}
 	/* Concantenate the provided var name and its value with = in between */
-	_strcpy(new_envValue, args[0]);
+	_strcpy(new_envValue, args[1]);
 	_strcat(new_envValue, "=");
-	_strcat(new_envValue, args[1]);
+	_strcat(new_envValue, args[2]);
 	/* Check if the environment variable already exists */
-	environ_var = _getenv(args[0]);
+	environ_var = _getenv(args[1]);
 	if (environ_var)
 	{
 		/* If it exists, update its value */
@@ -49,10 +46,8 @@ int com_setenv(char **args, char __attribute__((__unused__)) **front)
 	new_env = malloc(sizeof(char *) * (s + 2));
 	if (!new_env)
 	{
-		free(*new_env);
 		perror("new_envValue malloc failed at setenv");
 		free(new_envValue);
-		free(*environ_var);
 		return (-1);
 	}
 	/* Copy existing environment variables to the new array */
