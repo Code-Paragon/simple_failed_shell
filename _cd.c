@@ -9,7 +9,7 @@
  */
 int com_cd(char **args, char __attribute__((__unused__)) **front)
 {
-	/* struct stat dir ; */
+	struct stat direc;
 	char *newLine = "\n", **direc_inf;
 	char *pwd = NULL, *oldpwd = NULL;
 
@@ -28,7 +28,16 @@ int com_cd(char **args, char __attribute__((__unused__)) **front)
 			else
 			{
 				free(oldpwd);
-				free(pwd);
+				return (-1);
+			}
+		}
+		else
+		{
+			if (stat(args[0], &direc) == 0 && S_ISDIR(direc.st_mode)&& ((direc.st_mode & S_IXUSR) != 0))
+				chdir(args[0]);
+			else
+			{
+				free(oldpwd);
 				return (-1);
 			}
 		}

@@ -1,15 +1,16 @@
 #include "main.h"
+ldpwd);
 int com_unsetenv(char **args, char __attribute__((__unused__)) **front)
 {
 	char **new_env, **environ_var;
 	int idx, idx2;
 	size_t s;
-	if (!args[0])
+	if (!args[1])
 	{
 		perror("args error at unsetenv");
 		return (-1);
 	}
-	environ_var = _getenv(args[0]);
+	environ_var = _getenv(args[1]);
 	if (!environ_var)
 		return (0);
 	for (s = 0; environ[s]; s++)
@@ -17,7 +18,7 @@ int com_unsetenv(char **args, char __attribute__((__unused__)) **front)
 	new_env = malloc(sizeof(char *) * s);
 	if (!new_env)
 	{
-		free(new_env);
+		free(*environ_var);
 		perror("new_env malloc failed at unsetenv");
 		return (-1);
 	}
