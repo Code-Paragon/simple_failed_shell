@@ -10,7 +10,7 @@ int (*get_Plugin(char *command))(char **args, char **front);
  *
  * Return: 1 error, 0 success
  */
-int shell(char *const envp[], char *inputstr,char **args, char **front)
+int shell(char *const envp[], char *inputstr,char **args, char __attribute__((__unused__)) **front)
 {
 	ssize_t read = 1, Firstwrite;
 	size_t len = 100;
