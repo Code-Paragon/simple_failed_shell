@@ -34,6 +34,7 @@ int com_unsetenv(char **args, char __attribute__((__unused__)) **front);
 char *_strtok(char *str, const char *delim);
 int _atoi(char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
+int shell_exit(char **args);
 /**
  * struct Plugin_s - A new struct type defining builtin commands.
  * @comName: The name of the builtin command.

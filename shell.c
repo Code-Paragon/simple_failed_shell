@@ -41,7 +41,11 @@ int shell(char *const envp[], char *inputstr,char **args, char **front)
 			write(1, "\n", 1);
 			exit(0);
 		}
-
+		if (fraginputstr[0] != NULL)
+		{
+			if (_strcmp(fraginputstr[0], "exit") == 0)
+				shell_exit(fraginputstr);
+		}
 		Plugin_function = get_Plugin(fraginputstr[0]);
 		if (Plugin_function != NULL)
 		{

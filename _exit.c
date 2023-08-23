@@ -1,15 +1,14 @@
-/* handle exit argument */
+#include "main.h"
 
-int exit()
+int shell_exit(char **args)
 {
-	int exit_status;
-	
-	if (isdigit(*fraginputstr[1]) != 0)
+	int exit_status = 0;
+
+	if (args[1] != NULL && isdigit(*args[1]))
 	{
-		exit_status = _atoi(fraginputstr[1]);
-		exit(exit_status);
+		exit_status = _atoi(args[1]);
 	}
 	/* exit with 0 if no exit status is passed */
-	else
-		exit(0);
+	
+	exit(exit_status);
 }
