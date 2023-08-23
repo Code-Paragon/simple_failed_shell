@@ -58,43 +58,25 @@ ssize_t _getline(char **inputstr, size_t *m, FILE *dstream)
 	buf = malloc(sizeof(char) * 120);
 	if (!buf)
 		return (-1);
-	while (1)
+	while (cx != '\n')
 	{
 		ri = read(STDIN_FILENO, &cx, 1);
 
-		if (ri == -1)
+		if (ri == -1 || (ri == 0 && inputed == 0))
 		{
 			free(buf);
 			return (-1);
 		}
 
-		if (ri == 0)
+		if (ri == 0 && inputed != 0)
 		{
-			if (inputed == 0)
-			{ /* End of input */
-				free(buf);
-				return (0);
-			}
+			inputed++;
 			break;
 		}
-
-		if (cx == '\n')
-		{
-			break; /* End of line */
-		}
-
 		if (inputed >= 120)
-		{
 			buf = _realloc(buf, inputed, inputed + 1);
-		}
-
 		buf[inputed] = cx;
 		inputed++;
-	}
-	if (inputed == 0)
-	{
-		free(buf);
-		return (0);
 	}
 	buf[inputed] = '\0';
 
