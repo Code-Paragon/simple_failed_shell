@@ -45,7 +45,7 @@ int shell(char *const envp[], char *inputstr,char **args, char **front)
 		Plugin_function = get_Plugin(fraginputstr[0]);
 		if (Plugin_function != NULL)
 		{
-			Plugin_function(args, front);
+			Plugin_function(fraginputstr, args);
 		}
 		else
 			create_process(fraginputstr, envp);
