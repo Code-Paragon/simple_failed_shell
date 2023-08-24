@@ -7,6 +7,8 @@ int (*get_Plugin(char *command))(char **args, char **front);
  * shell - the main shell
  * @inputstr: usr input
  * @envp: process environ
+ * @args: argument array
+ * @front: pointer to front of arg arr
  *
  * Return: 1 error, 0 success
  */
@@ -19,6 +21,7 @@ int shell(char *const envp[], char *inputstr,
 	char *fraginputstr[1000];
 	int y = 0;
 	int (*Plugin_function)(char **args, char **front);
+
 	while (1)
 	{
 		Firstwrite = write(1, "($) ", 4);
