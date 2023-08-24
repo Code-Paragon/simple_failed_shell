@@ -10,7 +10,8 @@ int (*get_Plugin(char *command))(char **args, char **front);
  *
  * Return: 1 error, 0 success
  */
-int shell(char *const envp[], char *inputstr,char **args, char __attribute__((__unused__)) **front)
+int shell(char *const envp[], char *inputstr,
+	char **args, char __attribute__((__unused__)) **front)
 {
 	ssize_t read = 1, Firstwrite;
 	size_t len = 100;
@@ -40,7 +41,11 @@ int shell(char *const envp[], char *inputstr,char **args, char __attribute__((__
 			write(1, "\n", 1);
 			exit(0);
 		}
-
+		if (fraginputstr[0] != NULL)
+		{
+			if (_strcmp(fraginputstr[0], "exit") == 0)
+				shell_exit(fraginputstr);
+		}
 		Plugin_function = get_Plugin(fraginputstr[0]);
 		if (Plugin_function != NULL)
 		{
@@ -48,7 +53,6 @@ int shell(char *const envp[], char *inputstr,char **args, char __attribute__((__
 		}
 		else
 			create_process(fraginputstr, envp);
-		
 	}
 	free(inputstr);
 	return (0);

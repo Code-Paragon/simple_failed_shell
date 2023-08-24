@@ -1,10 +1,11 @@
 #include "main.h"
-ldpwd);
-int com_unsetenv(char **args, char __attribute__((__unused__)) **front)
+
+int com_unsetenv(char **args, char __attribute__((__unused__)) * *front)
 {
 	char **new_env, **environ_var;
 	int idx, idx2;
 	size_t s;
+
 	if (!args[1])
 	{
 		perror("args error at unsetenv");
@@ -14,7 +15,8 @@ int com_unsetenv(char **args, char __attribute__((__unused__)) **front)
 	if (!environ_var)
 		return (0);
 	for (s = 0; environ[s]; s++)
-	{}
+	{
+	}
 	new_env = malloc(sizeof(char *) * s);
 	if (!new_env)
 	{
