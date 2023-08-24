@@ -3,7 +3,7 @@
 /**
  * main - a simple shell
  * @argc: argument count
- * @argv: argument vector
+ * @args: argument vector
  * @front: pointer to fist argument
  *
  * Return: 0
