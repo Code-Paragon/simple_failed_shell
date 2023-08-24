@@ -14,7 +14,7 @@ char **_prompt(char *inputstr, char *fraginputstr[]);
  * Return: 1 error, 0 success
  */
 int shell(char *const envp[], char *inputstr,
-	char **args, char __attribute__((__unused__)) **front)
+		  char **args, char __attribute__((__unused__)) * *front)
 {
 	char *fraginputstr[1000];
 	int (*Plugin_function)(char **args, char **front);
@@ -76,8 +76,8 @@ int create_process(char *fraginputstr[], char *const envp[])
  * tok_inputstr - prints prompt and tokenise inputstr
  * @inputstr: input string
  * @fraginputstr: array of input string
- * 
- * Return: fraginputstr on success 
+ *
+ * Return: fraginputstr on success
  */
 char **tok_inputstr(char *inputstr, char *fraginputstr[])
 {
@@ -85,26 +85,26 @@ char **tok_inputstr(char *inputstr, char *fraginputstr[])
 	char delim[] = " \n\t";
 	int y = 0;
 	ssize_t Firstwrite, read = 1;
-	Firstwrite = write(1, "($) ", 4);
 
-		if (Firstwrite < 0)
-			perror("write failed");
-		read = _getline(&inputstr, &len, stdin);
-		if (read != -1)
+	Firstwrite = write(1, "($) ", 4);
+	if (Firstwrite < 0)
+		perror("write failed");
+	read = _getline(&inputstr, &len, stdin);
+	if (read != -1)
+	{
+		y = 0;
+		fraginputstr[y] = _strtok(inputstr, delim);
+		while (fraginputstr[y] != NULL)
 		{
-			y = 0;
-			fraginputstr[y] = _strtok(inputstr, delim);
-			while (fraginputstr[y] != NULL)
-			{
-				y++;
-				fraginputstr[y] = _strtok(NULL, delim);
-			}
+			y++;
+			fraginputstr[y] = _strtok(NULL, delim);
 		}
-		else /* Check for custom EOF i.e Crtl+D */
-		{
-			free(inputstr);
-			write(1, "\n", 1);
-			exit(0);
-		}
-		return (fraginputstr);
+	}
+	else /* Check for custom EOF i.e Crtl+D */
+	{
+		free(inputstr);
+		write(1, "\n", 1);
+		exit(0);
+	}
+	return (fraginputstr);
 }
