@@ -14,7 +14,7 @@ char **_prompt(char *inputstr, char *fraginputstr[]);
  * Return: 1 error, 0 success
  */
 int shell(char *const envp[], char *inputstr,
-		  char **args, char __attribute__((__unused__)) **front)
+		  char **args, char __attribute__((__unused__)) * *front)
 {
 	char *fraginputstr[1000];
 	int (*Plugin_function)(char **args, char **front);
@@ -86,9 +86,13 @@ char **tok_inputstr(char *inputstr, char *fraginputstr[])
 	int y = 0;
 	ssize_t Firstwrite, read = 1;
 
-	Firstwrite = write(1, "($) ", 4);
-	if (Firstwrite < 0)
-		perror("write failed");
+	if (isatty(STDIN_FILENO))
+	{
+		Firstwrite = write(1, "($) ", 4);
+		if (Firstwrite < 0)
+			perror("write failed");
+	}
+
 	read = _getline(&inputstr, &len, stdin);
 	if (read != -1)
 	{
