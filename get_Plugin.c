@@ -14,7 +14,7 @@ int (*get_Plugin(char *command))(char **args, char **front)
 		{"cd", com_cd},
 		{NULL, NULL}};
 	int h;
-	
+
 	for (h = 0; functions[h].comName; h++)
 	{
 		if (_strcmp(functions[h].comName, command) == 0)
