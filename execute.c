@@ -20,14 +20,18 @@ int execute(char *fraginputstr[], char *const envp[])
 
 		if (fullpath != NULL)
 		{
-			execve(fullpath, fraginputstr, envp);
-			perror("execve");
+			if (execve(fullpath, fraginputstr, envp) == -1)
+			{
+				perror("./hsh");
+			}
 		}
 	}
 	else
 	{
-		execve(command, fraginputstr, envp);
-		perror("execve");
+		if (execve(command, fraginputstr, envp) == -1)
+		{
+			free(fraginputstr);
+		}
 	}
 
 	return (-1);

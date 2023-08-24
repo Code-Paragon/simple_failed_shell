@@ -14,7 +14,7 @@ char *handle_path(char *command)
 	char *token;
 	char *delim = ":";
 
-	path = *(_getenv("PATH"));
+	path = getenv("PATH");/* remeber to derefrence it */
 
 	if (path == NULL)
 	{
@@ -23,7 +23,7 @@ char *handle_path(char *command)
 	}
 
 	/* Create a copy of PATH to avoid modifying the original */
-	path_copy = _strdup(path);
+	path_copy = strdup(path);
 
 	if (path_copy == NULL)
 	{
@@ -31,7 +31,7 @@ char *handle_path(char *command)
 		return (NULL);
 	}
 
-	token = _strtok(path_copy, delim);
+	token = strtok(path_copy, delim);
 
 	while (token != NULL)
 	{
@@ -42,7 +42,7 @@ char *handle_path(char *command)
 			free(path_copy);
 			return (file_path); /* Return the found path */
 		}
-		token = _strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 
 	free(path_copy);
@@ -62,16 +62,17 @@ char *search_file_path(char *command, char *token)
 	struct stat sb;
 	char *file;
 
-	file = malloc(_strlen(token) + _strlen(command) + 2);
+	file = malloc(strlen(token) + strlen(command) + 2);
 	if (file == NULL)
 	{
 		perror("Memory allocation error");
+		free(file);
 		return (NULL);
 	}
 
-	_strcpy(file, token);
-	_strcat(file, "/");
-	_strcat(file, command);
+	strcpy(file, token);
+	strcat(file, "/");
+	strcat(file, command);
 
 	if (stat(file, &sb) == 0)
 		return (file);

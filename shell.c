@@ -13,11 +13,11 @@ char **tok_inputstr(char *inputstr, char *fraginputstr[]);
  *
  * Return: 1 error, 0 success
  */
-int shell(char *const envp[], char *inputstr,
-		  char **args, char __attribute__((__unused__)) * *front)
+int shell(char *const envp[], char *inputstr/* ,
+		  char **args, char __attribute__((__unused__)) * *front */)
 {
 	char *fraginputstr[1000];
-	int (*Plugin_function)(char **args, char **front);
+/* 	int (*Plugin_function)(char **args, char **front); */
 
 	while (1)
 	{
@@ -27,12 +27,12 @@ int shell(char *const envp[], char *inputstr,
 			if (_strcmp(fraginputstr[0], "exit") == 0)
 				shell_exit(fraginputstr);
 		}
-		Plugin_function = get_Plugin(fraginputstr[0]);
+		/* Plugin_function = get_Plugin(fraginputstr[0]);
 		if (Plugin_function != NULL)
 		{
 			Plugin_function(fraginputstr, args);
 		}
-		else
+		else */
 			create_process(fraginputstr, envp);
 	}
 	free(inputstr);
@@ -86,22 +86,22 @@ char **tok_inputstr(char *inputstr, char *fraginputstr[])
 	int y = 0;
 	ssize_t Firstwrite, read = 1;
 
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO) || isatty(STDOUT_FILENO))
 	{
 		Firstwrite = write(1, "($) ", 4);
 		if (Firstwrite < 0)
 			perror("write failed");
 	}
 
-	read = _getline(&inputstr, &len, stdin);
+	read = getline(&inputstr, &len, stdin);
 	if (read != -1)
 	{
 		y = 0;
-		fraginputstr[y] = _strtok(inputstr, delim);
+		fraginputstr[y] = strtok(inputstr, delim);
 		while (fraginputstr[y] != NULL)
 		{
 			y++;
-			fraginputstr[y] = _strtok(NULL, delim);
+			fraginputstr[y] = strtok(NULL, delim);
 		}
 	}
 	else /* Check for custom EOF i.e Crtl+D */
@@ -110,5 +110,7 @@ char **tok_inputstr(char *inputstr, char *fraginputstr[])
 		write(1, "\n", 1);
 		exit(0);
 	}
+
+	free(inputstr);
 	return (fraginputstr);
 }
