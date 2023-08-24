@@ -1,6 +1,12 @@
 #include "main.h"
-
-int com_unsetenv(char **args, char __attribute__((__unused__)) * *front)
+/**
+ * com_unsetenv - unsets enviroment variables
+ * @args: argument array
+ * @front: double pointer to arg array front
+ *
+ * Return: -1 on failure and 1 on success.
+ */
+int com_unsetenv(char **args, char __attribute__((__unused__)) **front)
 {
 	char **new_env, **environ_var;
 	int idx, idx2;
