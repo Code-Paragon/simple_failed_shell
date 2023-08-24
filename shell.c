@@ -18,7 +18,6 @@ int shell(char *const envp[], char *inputstr,char **args, char __attribute__((__
 	char *fraginputstr[1000];
 	int y = 0;
 	int (*Plugin_function)(char **args, char **front);
-
 	while (1)
 	{
 		Firstwrite = write(1, "($) ", 4);
