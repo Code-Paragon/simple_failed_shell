@@ -15,7 +15,7 @@ char **_prompt(char *inputstr, char *fraginputstr[]);
  */
 int shell(char *const envp[], char *inputstr,
 	char **args, char __attribute__((__unused__)) **front)
-{	
+{
 	char *fraginputstr[1000];
 	int (*Plugin_function)(char **args, char **front);
 
@@ -72,7 +72,14 @@ int create_process(char *fraginputstr[], char *const envp[])
 	return (0);
 }
 
-char **_prompt(char *inputstr, char *fraginputstr[])
+/**
+ * tok_inputstr - prints prompt and tokenise inputstr
+ * @inputstr: input string
+ * @fraginputstr: array of input string
+ * 
+ * Return: fraginputstr on success 
+ */
+char **tok_inputstr(char *inputstr, char *fraginputstr[])
 {
 	size_t len = 100;
 	char delim[] = " \n\t";
