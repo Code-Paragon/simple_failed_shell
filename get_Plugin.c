@@ -9,7 +9,6 @@ int (*get_Plugin(char *command))(char **args, char **front)
 {
 	Plugin_t functions[] = {
 		{"env", com_env},
-		{"unsetenv", com_unsetenv},
 		{NULL, NULL}};
 	int h;
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 int create_process(char *fraginputstr[], char *const envp[]);
 int (*get_Plugin(char *command))(char **args, char **front);
-char **_prompt(char *inputstr, char *fraginputstr[]);
+char **tok_inputstr(char *inputstr, char *fraginputstr[]);
 
 /**
  * shell - the main shell
@@ -21,7 +21,7 @@ int shell(char *const envp[], char *inputstr,
 
 	while (1)
 	{
-		_prompt(inputstr, fraginputstr);
+		tok_inputstr(inputstr, fraginputstr);
 		if (fraginputstr[0] != NULL)
 		{
 			if (_strcmp(fraginputstr[0], "exit") == 0)
