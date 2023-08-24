@@ -14,7 +14,7 @@ char **_prompt(char *inputstr, char *fraginputstr[]);
  * Return: 1 error, 0 success
  */
 int shell(char *const envp[], char *inputstr,
-		  char **args, char __attribute__((__unused__)) * *front)
+		  char **args, char __attribute__((__unused__)) **front)
 {
 	char *fraginputstr[1000];
 	int (*Plugin_function)(char **args, char **front);
